@@ -11,7 +11,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class PropertiesCrudController extends CrudController
+class PropertyCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,7 +26,7 @@ class PropertiesCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Properties::class);
+        CRUD::setModel(\App\Models\Property::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/properties');
         CRUD::setEntityNameStrings('properties', 'properties');
     }

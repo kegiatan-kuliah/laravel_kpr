@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Properties extends Model
+class Property extends Model
 {
     use CrudTrait;
     protected $table = 'properties';
