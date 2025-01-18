@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\LoanApplicationRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /**
  * Class LoanApplicationCrudController
@@ -39,6 +40,7 @@ class LoanApplicationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::addButtonFromModelFunction('top', 'export_button', 'export', 'end');
         CRUD::column([
             'label' => 'Application Date',
             'name' => 'application_date',
@@ -278,5 +280,12 @@ class LoanApplicationCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function export()
+    {
+        $applications = \App\Models\LoanApplication::orderBy('id','desc')->get();   
+        $pdf = Pdf::loadView('export.loan_application',['applications' => $applications]);
+        return $pdf->stream();
     }
 }

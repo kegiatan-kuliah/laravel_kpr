@@ -20,6 +20,7 @@ Route::group([
     Route::crud('properties', 'PropertyCrudController');
     Route::crud('bank', 'BankCrudController');
     Route::crud('loan-application', 'LoanApplicationCrudController');
+    Route::get('/export/loan-application', 'LoanApplicationCrudController@export')->name('application.export');
     Route::crud('installment', 'InstallmentCrudController');
 }); // this should be the absolute last line of this file
 

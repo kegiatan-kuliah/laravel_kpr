@@ -28,4 +28,9 @@ class LoanApplication extends Model
     {
         return $this->belongsTo(Bank::class, 'bank_id');
     }
+
+    public function export($crud = false)
+    {
+        return '<a class="btn btn-primary" target="_blank" href="'.route('application.export').'">Download PDF</a>';
+    }
 }
